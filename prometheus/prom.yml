@@ -7,10 +7,9 @@ scrape_configs:
   #     - targets: ['localhost:9090']
 
   - job_name: 'coreapi'
-    metrics_path: /metrics
     scheme: https
     static_configs:
-      - targets: ['dev.core.msbureau.com']
+      - targets: ['dev.core.msbureau.com/metrics']
 
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
