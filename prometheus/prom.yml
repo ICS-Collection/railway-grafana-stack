@@ -11,7 +11,16 @@ scrape_configs:
     scheme: https
     static_configs:
       - targets: ['dev.core.msbureau.com']
-
+  - job_name: 'coreapi-prod'
+    metrics_path: /metrics
+    scheme: https
+    static_configs:
+      - targets: ['core.api.msbureau.com']
+  - job_name: 'coreapi-prod-vegas'
+    metrics_path: /metrics
+    scheme: https
+    static_configs:
+      - targets: ['core.api.vegascollect.com']
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
