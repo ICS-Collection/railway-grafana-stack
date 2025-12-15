@@ -32,6 +32,9 @@ scrape_configs:
       password: __SUPABASE_SERVICE_ROLE_KEY__
     static_configs:
       - targets: ["__SUPABASE_PROJECT_REF__.supabase.co"]
+        labels:
+          supabase_project_ref: "__SUPABASE_PROJECT_REF__"
+          supabase_identifier: "__SUPABASE_PROJECT_REF__"
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
