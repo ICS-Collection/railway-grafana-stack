@@ -21,6 +21,17 @@ scrape_configs:
     scheme: https
     static_configs:
       - targets: ['core.api.vegascollect.com']
+
+  - job_name: supabase-__SUPABASE_PROJECT_REF__
+    scheme: https
+    metrics_path: "/customer/v1/privileged/metrics"
+    params:
+      supabase_grafana: ["true"]
+    basic_auth:
+      username: service_role
+      password: __SUPABASE_SERVICE_ROLE_KEY__
+    static_configs:
+      - targets: ["__SUPABASE_PROJECT_REF__.supabase.co"]
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
