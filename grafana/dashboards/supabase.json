@@ -80,7 +80,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Busy state of all CPU cores together",
       "fieldConfig": {
@@ -147,7 +147,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "expr": "clamp_min(100 - (avg(rate(node_cpu_seconds_total{mode=\"idle\", supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) by (instance) * 100), 0)",
           "hide": false,
@@ -163,7 +163,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Busy state of all CPU cores together (5 min average)",
       "fieldConfig": {
@@ -230,7 +230,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "expr": "avg(node_load5{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) /  count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) by (cpu)) * 100",
           "format": "time_series",
@@ -246,7 +246,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Busy state of all CPU cores together (15 min average)",
       "fieldConfig": {
@@ -313,7 +313,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "expr": "avg(node_load15{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) /  count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) by (cpu)) * 100",
           "hide": false,
@@ -328,7 +328,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Non available RAM memory",
       "fieldConfig": {
@@ -386,7 +386,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "editorMode": "code",
           "expr": "(1 - (node_memory_MemAvailable_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} / node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})) * 100\n",
@@ -400,7 +400,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "editorMode": "code",
           "expr": "((node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_Buffers_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_Cached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) / node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) * 100\n\n",
@@ -418,7 +418,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Total RAM usage - including buffers and cache",
       "fieldConfig": {
@@ -485,7 +485,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "editorMode": "code",
           "expr": "((node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) / node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) * 100\n",
@@ -501,7 +501,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Used Root FS",
       "fieldConfig": {
@@ -568,7 +568,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "expr": "100 - ((node_filesystem_avail_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/\",fstype!=\"rootfs\"})",
           "format": "time_series",
@@ -583,7 +583,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Total number of CPU cores",
       "fieldConfig": {
@@ -647,7 +647,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "expr": "count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) by (cpu))",
           "interval": "",
@@ -663,7 +663,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "System uptime",
       "fieldConfig": {
@@ -728,7 +728,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "exemplar": false,
           "expr": "node_time_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_boot_time_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
@@ -745,7 +745,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Total SWAP",
       "fieldConfig": {
@@ -810,7 +810,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "expr": "node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
           "intervalFactor": 1,
@@ -824,7 +824,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Total RootFS",
       "fieldConfig": {
@@ -893,7 +893,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "exemplar": false,
           "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/\",fstype!=\"rootfs\"}",
@@ -912,7 +912,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Total data disk capacity",
       "fieldConfig": {
@@ -981,7 +981,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "exemplar": false,
           "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/data\",fstype!=\"rootfs\"}",
@@ -1001,7 +1001,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Total RAM",
       "fieldConfig": {
@@ -1066,7 +1066,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "Prometheus"
           },
           "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
           "intervalFactor": 1,
@@ -1093,7 +1093,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "Prometheus"
       },
       "description": "Basic CPU info",
       "fieldConfig": {
