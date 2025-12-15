@@ -24,7 +24,7 @@ datasources:
     type: prometheus
     access: proxy
     orgId: 1
-    uid: Prometheus
+    uid: grafana_prometheus
     url: $PROMETHEUS_INTERNAL_URL
     user:
     database:
