@@ -35,6 +35,19 @@ scrape_configs:
         labels:
           supabase_project_ref: "__SUPABASE_PROJECT_REF__"
           supabase_identifier: "__SUPABASE_PROJECT_REF__"
+  - job_name: 'clickhouse-cloud'
+    scrape_interval: 60s
+    scheme: https
+    metrics_path: "/v1/organizations/c63b369c-f38d-4c4f-88a5-79881f3d8d8f/prometheus"
+    params:
+      filtered_metrics: ["true"]
+    honor_labels: true
+    basic_auth:
+      username: __CLICKHOUSE_CLOUD_KEY_ID__
+      password: __CLICKHOUSE_CLOUD_KEY_SECRET__
+    static_configs:
+      - targets: ["api.clickhouse.cloud"]
+
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
