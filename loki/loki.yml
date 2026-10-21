@@ -27,6 +27,43 @@ storage_config:
     active_index_directory: /loki/tsdb-index
     cache_location: /loki/tsdb-cache
 
+# Memory. The ingester holds every open chunk in RAM; flush them sooner and keep
+# them small so a quiet stream does not pin memory for two hours (the defaults).
+ingester:
+  chunk_idle_period: 30m
+  max_chunk_age: 1h
+  chunk_target_size: 1048576
 
+# Pattern detection keeps a second in-memory copy of recent lines for Grafana's
+# "Patterns" tab. Nothing here uses it, and it was a large share of the 2.8 GB RSS.
 pattern_ingester:
-  enabled: true
+  enabled: false
+
+# Retention and ingestion guard rails. Without retention the 50 GB volume fills
+# in a few months; without rate limits one noisy deploy can balloon the ingester.
+limits_config:
+  retention_period: 720h
+  reject_old_samples: true
+  reject_old_samples_max_age: 168h
+  ingestion_rate_mb: 8
+  ingestion_burst_size_mb: 16
+  max_streams_per_user: 10000
+  max_global_streams_per_user: 10000
+  max_line_size: 256KB
+  max_query_series: 500
+  query_timeout: 2m
+
+compactor:
+  working_directory: /loki/compactor
+  retention_enabled: true
+  delete_request_store: filesystem
+  compaction_interval: 10m
+  retention_delete_delay: 2h
+
+# Keep query caches small and bounded.
+query_range:
+  results_cache:
+    cache:
+      embedded_cache:
+        enabled: true
+        max_size_mb: 50
