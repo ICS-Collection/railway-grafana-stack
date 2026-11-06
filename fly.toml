@@ -1,0 +1,47 @@
+app = "ics-grafana-stack"
+primary_region = "iad"
+swap_size_mb = 1024
+
+[build]
+  dockerfile = "Dockerfile"
+
+[[mounts]]
+  source = "stack_data"
+  destination = "/data"
+  initial_size = "20gb"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    grace_period = "20s"
+    interval = "30s"
+    method = "GET"
+    timeout = "5s"
+    path = "/api/health"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 3100
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[services.ports]]
+    port = 3100
+    handlers = ["tls", "http"]
+
+  [[services.http_checks]]
+    grace_period = "20s"
+    interval = "30s"
+    method = "GET"
+    timeout = "5s"
+    path = "/ready"
+
+[[vm]]
+  size = "shared-cpu-2x"
+  memory = "2gb"
